@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>RPG Game</title>
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const socket = io('http://localhost:4000');
+
+      socket.on('connect', () => {
+        console.log('Connected to server');
+      });
+
+      socket.on('narratorResponse', (data) => {
+        console.log('Narrator response:', data);
+      });
+
+      // Example of sending a player action
+      socket.emit('playerAction', { action: 'move', direction: 'north' });
+    });
+  </script>
+</head>
+<body>
+  <h1>RPG Game</h1>
+</body>
+</html>

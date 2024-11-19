@@ -1,0 +1,9 @@
+We are creating an RPG game. It will be mostly spoken, imaginary, rather than ingame. We will implement OpenAI chatgpt calls as a sort of narrator.
+We will have a central node server. It will handle the game data, with clients connecting on their own devices. They can leave and rejoin as they please, with data remiaining intact on the server.
+We will be properly use states to manage client interfaces and gameplay etc. We are coding in vanilla JS.
+The main concept is that players will all take turns to input their decision for their turn this round. a round iterates when everyone has had a turn, this is when the narrator is called to further gameplay.
+The narrator will also manage npc creation and actions. each npc will be their own chatgpt model that is called.
+The game will take place in rooms. each room contains things, mainly players/npcs, but also items and perhaps others eventually. for now just players, with room to add anything. the room will have ajoining rooms that can be
+generated on the fly by the narrator. NPCs and players will always have one room they are in - if the players are in a room with an NPC, it can be interacted with. players can be in separate rooms and talk to separate NPCs.
+This is also how combat can be handled. we are mainly interested in words and language instead of hard numbers - we will dice roll for any skill based or combat checks, as well as taking the RPG elements into consideration,
+but that is all the number cruncing we will do - then the narrator will decide what happens. 
