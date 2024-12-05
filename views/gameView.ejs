@@ -1,0 +1,46 @@
+<button class="backBtn" data-action="disconnectPlayer"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000"><path d="m313-440 224 224-57 56-320-320 320-320 57 56-224 224h487v80H313Z"/></svg></button>
+
+<div id="drawer">
+  <div id="roomContent">
+    <h2>You are in <%= room.name %></h2>
+    <p><%= room.description %></p>
+    <p>In this room:</p>
+    <ul>
+      <% room.players.forEach(player => { %>
+        <li><%= player.name %> the <%= player.race %> <%= player.class %></li>
+      <% }) %>
+    </ul>
+    <!-- <p>Exits:</p> -->
+    <!-- <ul>
+      <% room.exits.forEach(exit => { %>
+        <li><%= exit %></li>
+      <% }) %>
+    </ul> -->
+  </div>
+    <div id="playerContent">
+        <h2><%= player.name %></h2>
+        <p><%= player.race %> <%= player.class %></p>
+        <p><%= player.description %></p>
+    </div>
+    
+</div>
+
+<!-- Add more game-specific UI elements here -->
+<!-- <button onclick="sendPlayerAction({ action: 'move', direction: 'north' });">Move North</button> -->
+
+<div id="messages"></div>
+
+<div id="turnContent">
+    <button id="moveToRoom1">Room1</button>
+    <button id="moveToRoom2">Room2</button>
+    <div id="turnInfo"></div>
+    <form data-action="takeTurn" id="turnForm">
+        <textarea type="text" required id="playerInput" placeholder="Type your action..."></textarea>
+        <button type="submit" disabled id="takeTurnBtn">Take Turn</button>
+    </form>
+    <button id="recordButton">Hold to Record</button>
+</div>
+
+
+
+

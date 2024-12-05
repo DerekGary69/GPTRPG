@@ -1,9 +1,24 @@
 We are creating an RPG game. It will be mostly spoken, imaginary, rather than ingame. We will implement OpenAI chatgpt calls as a sort of narrator.
-We will have a central node server. It will handle the game data, with clients connecting on their own devices. They can leave and rejoin as they please, with data remiaining intact on the server.
-We will be properly use states to manage client interfaces and gameplay etc. We are coding in vanilla JS.
-The main concept is that players will all take turns to input their decision for their turn this round. a round iterates when everyone has had a turn, this is when the narrator is called to further gameplay.
-The narrator will also manage npc creation and actions. each npc will be their own chatgpt model that is called.
-The game will take place in rooms. each room contains things, mainly players/npcs, but also items and perhaps others eventually. for now just players, with room to add anything. the room will have ajoining rooms that can be
-generated on the fly by the narrator. NPCs and players will always have one room they are in - if the players are in a room with an NPC, it can be interacted with. players can be in separate rooms and talk to separate NPCs.
-This is also how combat can be handled. we are mainly interested in words and language instead of hard numbers - we will dice roll for any skill based or combat checks, as well as taking the RPG elements into consideration,
-but that is all the number cruncing we will do - then the narrator will decide what happens. 
+We will have a central node server. It will handle the game data, with clients connecting on their own devices. They can leave and rejoin as they please, with data remaining intact on the server.
+We will properly use states to manage client interfaces and gameplay etc. We are coding in vanilla JS.
+The main concept is that players will all take turns to input their decision for their turn this round. A round iterates when everyone has had a turn, this is when the narrator is called to further gameplay.
+The narrator will also manage NPC creation and actions. Each NPC will be their own chatgpt model that is called.
+The game will take place in rooms. Each room contains things, mainly players/NPCs, but also items and perhaps others eventually. For now just players, with room to add anything. The room will have adjoining rooms that can be
+generated on the fly by the narrator. NPCs and players will always have one room they are in - if the players are in a room with an NPC, it can be interacted with. Players can be in separate rooms and talk to separate NPCs.
+This is also how combat can be handled. We are mainly interested in words and language instead of hard numbers - we will dice roll for any skill-based or combat checks, as well as taking the RPG elements into consideration,
+but that is all the number crunching we will do - then the narrator will decide what happens.
+
+Design Thinking:
+1. **State Management**: The client interface is managed using states to ensure data consistency and a smooth user experience. This includes handling player connections, disconnections, and transitions between different views (e.g., player selection, game view).
+
+2. **Rooms System**: The game world is divided into rooms. Each room is an immutable object managed by the server. Players and NPCs are assigned to rooms, and they can only interact with entities within the same room. Rooms can have exits that allow navigation to other rooms. This system ensures that the game world remains consistent and allows players to leave and rejoin the game without losing their progress.
+
+3. **Player and NPC Management**: Players and NPCs are managed as objects on the server. Each player has attributes such as name, race, class, description, abilities, actions, and the room they are in. NPCs are managed similarly and can be interacted with by players in the same room.
+
+4. **Narrator Integration**: The narrator, powered by OpenAI's chatgpt, is responsible for advancing the game narrative, creating NPCs, and handling their actions. The narrator is called at the end of each round to provide updates and further the storyline.
+
+5. **Client-Server Communication**: The server handles all game data and logic, while the client is responsible for rendering the user interface and sending player actions to the server. The server sends HTML templates to the client for rendering different views, ensuring that the client interface is always up-to-date with the latest game state.
+
+6. **Testing and Debugging**: A default player ("TestPlayer") is included for testing purposes. This allows for easy testing of the game mechanics and client-server interactions without needing to create a new player each time.
+
+7. **Extensibility**: The current design allows for easy addition of new features, such as more complex room interactions, additional player and NPC attributes, and new game mechanics. The use of immutable room objects ensures that the game world remains consistent even as new features are added.

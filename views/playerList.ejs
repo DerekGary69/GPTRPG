@@ -1,0 +1,16 @@
+<div id="playerListContent">
+    <h2>Select Player</h2>
+    <ul>
+      <% players.forEach(player => { %>
+        <li>
+          <span><%= player.name %> the <%= player.race %> <%= player.class %></span>
+            <% if (!player.isNpc) { %>
+            <button data-action="selectPlayer" data-player-name="<%= player.name %>">Select</button>
+            <% } else { %>
+            <button disabled>NPC</button>
+            <% } %>
+        </li>
+      <% }) %>
+    </ul>
+    <button onclick="socket.emit('requestPlayerForm')">Create New Player</button>
+</div>

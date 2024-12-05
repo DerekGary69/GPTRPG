@@ -1,0 +1,8 @@
+
+  <% messages.forEach(message => { %>
+    <div class="message <%= message.role %>"><span><%- message.content %></span>
+    <button class="delete" data-action="deleteMessage" data-thread-id="thread_lgsRHFbLxMMMETSCR8AubYDY" data-message-id="<%= message.id %>">X</button>
+    </div>
+  <% }) %>
+  <div class="spinner" id="loadingSpinner"></div>
+
